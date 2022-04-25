@@ -1,0 +1,7 @@
+{
+  "version": 2,
+  "projects": {
+    "bit": "apps/bit",
+    "bit-e2e": "apps/bit-e2e"
+  }
+}

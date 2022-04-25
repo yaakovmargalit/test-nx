@@ -1,0 +1,88 @@
+{
+  "projectType": "application",
+  "root": "apps/bit",
+  "sourceRoot": "apps/bit/src",
+  "prefix": "try-bit",
+  "targets": {
+    "build": {
+      "executor": "@angular-devkit/build-angular:browser",
+      "outputs": ["{options.outputPath}"],
+      "options": {
+        "outputPath": "dist/apps/bit",
+        "index": "apps/bit/src/index.html",
+        "main": "apps/bit/src/main.ts",
+        "polyfills": "apps/bit/src/polyfills.ts",
+        "tsConfig": "apps/bit/tsconfig.app.json",
+        "inlineStyleLanguage": "scss",
+        "assets": ["apps/bit/src/favicon.ico", "apps/bit/src/assets"],
+        "styles": ["apps/bit/src/styles.scss"],
+        "scripts": []
+      },
+      "configurations": {
+        "production": {
+          "budgets": [
+            {
+              "type": "initial",
+              "maximumWarning": "500kb",
+              "maximumError": "1mb"
+            },
+            {
+              "type": "anyComponentStyle",
+              "maximumWarning": "2kb",
+              "maximumError": "4kb"
+            }
+          ],
+          "fileReplacements": [
+            {
+              "replace": "apps/bit/src/environments/environment.ts",
+              "with": "apps/bit/src/environments/environment.prod.ts"
+            }
+          ],
+          "outputHashing": "all"
+        },
+        "development": {
+          "buildOptimizer": false,
+          "optimization": false,
+          "vendorChunk": true,
+          "extractLicenses": false,
+          "sourceMap": true,
+          "namedChunks": true
+        }
+      },
+      "defaultConfiguration": "production"
+    },
+    "serve": {
+      "executor": "@angular-devkit/build-angular:dev-server",
+      "configurations": {
+        "production": {
+          "browserTarget": "bit:build:production"
+        },
+        "development": {
+          "browserTarget": "bit:build:development"
+        }
+      },
+      "defaultConfiguration": "development"
+    },
+    "extract-i18n": {
+      "executor": "@angular-devkit/build-angular:extract-i18n",
+      "options": {
+        "browserTarget": "bit:build"
+      }
+    },
+    "lint": {
+      "executor": "@nrwl/linter:eslint",
+      "options": {
+        "lintFilePatterns": ["apps/bit/src/**/*.ts", "apps/bit/src/**/*.html"]
+      }
+    },
+    "test": {
+      "executor": "@nrwl/jest:jest",
+      "outputs": ["coverage/apps/bit"],
+      "options": {
+        "jestConfig": "apps/bit/jest.config.js",
+        "passWithNoTests": true
+      }
+    }
+  },
+  "tags": []
+}
